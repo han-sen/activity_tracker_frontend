@@ -15,7 +15,7 @@ const BarChart = () => {
         };
 
         data.forEach((activity) => {
-            chartData.labels.push(activity.description);
+            chartData.labels.push(`${activity.description.slice(0, 12)}...`);
             chartData.datasets[0].data.push(activity.time_spent);
         });
         return chartData;
