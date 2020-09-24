@@ -20,14 +20,17 @@ function App() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await fetch("activities", {
-                body: JSON.stringify(formInputs),
-                method: "POST",
-                headers: {
-                    Accept: "application/json, text/plain, */*",
-                    "Content-Type": "application/json",
-                },
-            });
+            const response = await fetch(
+                "https://arete-time-tracker-backend.herokuapp.com/activities/",
+                {
+                    body: JSON.stringify(formInputs),
+                    method: "POST",
+                    headers: {
+                        Accept: "application/json, text/plain, */*",
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
             const data = await response.json();
             updateFormInputs({
                 description: "",
@@ -40,7 +43,9 @@ function App() {
     };
     const getActivities = async () => {
         try {
-            const response = await fetch("/activities");
+            const response = await fetch(
+                "https://arete-time-tracker-backend.herokuapp.com/activities/"
+            );
             const data = await response.json();
             setActivities(data);
         } catch (error) {

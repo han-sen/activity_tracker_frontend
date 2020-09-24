@@ -15,7 +15,7 @@ const BarChart = () => {
         };
 
         data.forEach((activity) => {
-            chartData.labels.push(`${activity.description.slice(0, 12)}...`);
+            chartData.labels.push(`${activity.description.slice(0, 15)}...`);
             chartData.datasets[0].data.push(activity.time_spent);
         });
         return chartData;
@@ -23,12 +23,12 @@ const BarChart = () => {
     const createChart = (data) => {
         const ctx = document.querySelector("#activities_chart");
         return new Chart(ctx, {
-            type: "bar",
+            type: "line",
             data: data,
         });
     };
     const getData = () => {
-        fetch("/activities/")
+        fetch("https://arete-time-tracker-backend.herokuapp.com/activities/")
             .then((response) => response.json())
             .then((jData) => prepareData(jData))
             .then((data) => createChart(data))
